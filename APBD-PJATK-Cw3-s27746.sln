@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APBD-PJATK-Cw3-s27746", "APBD-PJATK-Cw3-s27746\APBD-PJATK-Cw3-s27746.csproj", "{A471F2FC-791E-41BB-8193-1B5AB763798C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A471F2FC-791E-41BB-8193-1B5AB763798C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A471F2FC-791E-41BB-8193-1B5AB763798C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A471F2FC-791E-41BB-8193-1B5AB763798C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A471F2FC-791E-41BB-8193-1B5AB763798C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
