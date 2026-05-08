@@ -1,6 +1,23 @@
-﻿namespace APBD_PJATK_Cw3_s27746.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace APBD_PJATK_Cw3_s27746.Models;
 
 public class Room
 {
     
+    public int Id { get; set; }
+    
+    [Required]
+    public string Name { get; set; } = string.Empty;
+    
+    [Required]
+    public string BuildingCode { get; set; } = string.Empty;
+    
+    public int Floor { get; set; }
+    
+    [Range(1, int.MaxValue)]
+    public int Capacity { get; set; }
+    public bool hasProjector { get; set; }
+    public bool isActive { get; set; } = true;
+
 }

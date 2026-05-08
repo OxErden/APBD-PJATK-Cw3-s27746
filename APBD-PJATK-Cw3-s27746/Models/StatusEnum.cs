@@ -1,0 +1,6 @@
+﻿namespace APBD_PJATK_Cw3_s27746.Models;
+
+public enum StatusEnum
+{
+    planned, confirmed, cancelled
+}
