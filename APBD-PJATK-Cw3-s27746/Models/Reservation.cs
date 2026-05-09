@@ -2,7 +2,7 @@
 
 namespace APBD_PJATK_Cw3_s27746.Models;
 
-public class Reservation
+public class Reservation : IValidatableObject
 {
     public int Id { get; set; }
     

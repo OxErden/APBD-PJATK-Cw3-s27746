@@ -18,6 +18,6 @@ public class Room
     [Range(1, int.MaxValue)]
     public int Capacity { get; set; }
     public bool hasProjector { get; set; }
-    public bool isActive { get; set; } = true;
+    public bool isActive { get; set; }
 
 }

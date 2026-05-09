@@ -78,5 +78,11 @@ public class DataBase
         }
     };
 
+    private static int nextRoomId = 7;
+    private static int nextReservationId = 6;
+    
+    public static int NextRoomId() => nextRoomId++;
+    public static int NextReservationId() => nextReservationId++;
+
 
 }
