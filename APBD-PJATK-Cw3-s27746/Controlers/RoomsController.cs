@@ -9,9 +9,10 @@ namespace APBD_PJATK_Cw3_s27746.Controlers;
 [Route("api/[controller]")]
 public class RoomsController : ControllerBase
 {
-
+//-----------------------------GET------------------------------------
     [HttpGet]
-    public IActionResult GetRooms([FromQuery] bool? hasProjector = null,  [FromQuery] bool? IsActive = null, [FromQuery] int? minCapacity = null)
+    public IActionResult GetRooms([FromQuery] bool? hasProjector = null, [FromQuery] bool? IsActive = null,
+        [FromQuery] int? minCapacity = null)
     {
         var query = DataBase.Rooms.AsEnumerable();
 
@@ -22,14 +23,14 @@ public class RoomsController : ControllerBase
 
         if (IsActive.HasValue)
         {
-            query = query.Where(r => r.isActive== IsActive.Value);
+            query = query.Where(r => r.isActive == IsActive.Value);
         }
 
         if (minCapacity.HasValue)
-            query = query.Where(r => r.Capacity >= minCapacity.Value);
         {
-            
+            query = query.Where(r => r.Capacity >= minCapacity.Value);
         }
+        
         return Ok(query.ToList());
     }
 
@@ -57,6 +58,81 @@ public class RoomsController : ControllerBase
         }
         return Ok(room);
     }
+
+    [HttpGet("building/floor/{Floor}")]
+
+    public IActionResult GetByFloor(int Floor)
+    {
+
+        var room = DataBase.Rooms.Where(r=>r.Floor == Floor);
+        
+        if (!room.Any())
+        {
+            return NotFound("No rooms at such floor");
+        }
+        return Ok(room);
+    }
+    
+    //------------------------------POST-----------------------
+
+    [HttpPost]
+
+    public IActionResult addRoom([FromBody] Room room)
+    {
+        room.Id = DataBase.NextRoomId();
+        
+        DataBase.Rooms.Add(room);
+        
+        return CreatedAtAction(nameof(GetById), new { id = room.Id }, room);
+
+    }
+
+    //-----------------------------------PUT----------------------
+    [HttpPut("{id}")]
+
+    public IActionResult modifyRoom(int id, [FromBody] Room room)
+    {
+
+       var existingRoom = DataBase.Rooms.FirstOrDefault(r => r.Id == room.Id);
+
+       if (existingRoom == null)
+       {
+           return NotFound("Room not found");
+       }
+       
+       existingRoom.Name = room.Name;
+       existingRoom.BuildingCode = room.BuildingCode;
+       existingRoom.Floor =  room.Floor;
+       existingRoom.Capacity = room.Capacity;
+       existingRoom.hasProjector = room.hasProjector;
+       existingRoom.isActive = room.isActive;
+       
+       return Ok(existingRoom);
+
+    }
     
     
+    //----------------------------DELETE-------------------------
+
+    [HttpDelete("{id}")]
+
+    public IActionResult removeRoom(int id)
+    {
+        var existingRoom = DataBase.Rooms.FirstOrDefault(r => r.Id == id);
+
+        if (existingRoom == null)
+        {
+            return NotFound("Room not found");
+        }
+        
+        DataBase.Rooms.Remove(existingRoom);
+        return NoContent();
+    }
+    
+
+
+
+
+
+
 }
