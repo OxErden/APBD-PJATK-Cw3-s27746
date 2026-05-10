@@ -124,6 +124,13 @@ public class RoomsController : ControllerBase
         {
             return NotFound("Room not found");
         }
+        var today = DateOnly.FromDateTime(DateTime.Today);
+        var hasUpcoming = DataBase.Reservations
+            .Any(re => re.RoomId == id && re.Date >= today);
+
+        if (hasUpcoming)
+            return Conflict("Cannot delete room with upcoming reservations");
+        
         
         DataBase.Rooms.Remove(existingRoom);
         return NoContent();
